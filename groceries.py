@@ -1,5 +1,3 @@
-# groceries.py
-
 products = [
     {"id":1, "name": "Chocolate Sandwich Cookies", "department": "snacks", "aisle": "cookies cakes", "price": 3.50},
     {"id":2, "name": "All-Seasons Salt", "department": "pantry", "aisle": "spices seasonings", "price": 4.99},
@@ -21,8 +19,35 @@ products = [
     {"id":18, "name": "Pizza for One Suprema Frozen Pizza", "department": "frozen", "aisle": "frozen pizza", "price": 12.50},
     {"id":19, "name": "Gluten Free Quinoa Three Cheese & Mushroom Blend", "department": "dry goods pasta", "aisle": "grains rice dried goods", "price": 3.99},
     {"id":20, "name": "Pomegranate Cranberry & Aloe Vera Enrich Drink", "department": "beverages", "aisle": "juice nectars", "price": 4.25}
-] # based on data from Instacart: https://www.instacart.com/datasets/grocery-shopping-2017
+]
 
-print(products)
+print("--------------")
 
-# TODO: write some Python code here to produce the desired output
+print("THERE ARE " + str(len(products)) + " PRODUCTS:")
+
+print("--------------")
+
+import operator
+
+products = sorted(products, key=operator.itemgetter('name'))
+for myobject in products:
+    print(" + " + myobject["name"],
+    " ($"+ str("{0:.2f}".format(myobject["price"])) + ")")
+
+unique_department = {}
+for product in products:
+    if product["department"] in unique_department:
+        continue
+    else:
+        department = product["department"]
+        print(department)
+        unique_department[department] = True
+
+print("--------------")
+
+print("THERE ARE " + str(len(unique_department)) + " DEPARTMENTS:")
+
+print("--------------")
+
+for x in sorted(unique_department):
+    print(" + " + x)
